@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>game</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="error-log" style="position:fixed; top:0; left:0; background:rgba(255,0,0,0.8); color:white; padding:20px; z-index:9999; display:none; font-family:monospace; font-size:14px; width:100%; white-space:pre-wrap;"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.onerror = function(msg, source, lineno, colno, error) {
+        var el = document.getElementById('error-log');
+        el.style.display = 'block';
+        el.innerText += 'ERROR: ' + msg + '\nSource: ' + source + ':' + lineno + ':' + colno + '\n' + (error && error.stack ? error.stack : '') + '\n\n';
+      };
+      const oldError = console.error;
+      console.error = function() {
+        var el = document.getElementById('error-log');
+        el.style.display = 'block';
+        el.innerText += 'CONSOLE.ERROR: ' + Array.from(arguments).join(' ') + '\n\n';
+        oldError.apply(console, arguments);
+      };
+    </script>
+  </body>
+</html>
