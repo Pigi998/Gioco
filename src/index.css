@@ -1,0 +1,233 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesize: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+/* UI Overlays */
+.ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-layer > * {
+  pointer-events: auto;
+}
+
+/* Dialogue Box */
+.dialogue-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid #555;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+}
+
+.dialogue-speaker {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #fbbf24;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dialogue-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.dialogue-next {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 0.9rem;
+  color: #aaa;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* Selection Screen */
+.selection-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: white;
+}
+
+.character-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.character-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #2563eb;
+}
+
+/* Combat UI */
+.combat-ui {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.party-status {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.character-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hp-bar-container {
+  width: 150px;
+  height: 12px;
+  background: #333;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.hp-bar {
+  height: 100%;
+  background: #ef4444;
+  transition: width 0.3s ease;
+}
+
+.combat-menu {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #555;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  overflow: hidden;
+}
+
+.menu-btn {
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+  transition: background 0.2s;
+  font-size: 1rem;
+}
+
+.menu-btn:hover {
+  background: #3b82f6;
+}
+
+.menu-btn:last-child {
+  border-bottom: none;
+}
+
+.active-turn-indicator {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 1px solid #fbbf24;
+  color: #fbbf24;
+}
+
+.combat-log {
+  position: absolute;
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  max-width: 600px;
+}
